@@ -46,9 +46,6 @@
     	<artifactId>grizzly-http-server</artifactId>
     	<version>3.0.0</version>
 	</dependency>
-	<dependency>
-		
-	</dependency>
 	
 	<!-- https://mvnrepository.com/artifact/jakarta.json.bind/jakarta.json.bind-api -->
 	<dependency>
