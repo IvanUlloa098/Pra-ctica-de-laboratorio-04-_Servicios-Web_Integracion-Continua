@@ -33,7 +33,7 @@ public class PedidoResource {
 
     //SCORPION CODE START
     @POST
-    @Path("crearpedido")
+    @Path("/crearpedido/")
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response crearPedido(@FormParam("producto_Id") String productoid,@FormParam("cedula_Id") String cedulaid,@FormParam("cantidad") String cantidad) throws Exception {
@@ -52,7 +52,7 @@ public class PedidoResource {
             FacturaDetalle facturaDetalle = new FacturaDetalle(cant,total_producto,facturacab,producto);
             facturaDetalleFacade.create(facturaDetalle);
         }catch (Exception e){
-            System.out.println("IT's MY FIRST ORDER");
+            System.out.println("Primera Orden");
             Pedido ped = new Pedido("EN_PROCESO",cal,persona,null);
             FacturaCabecera facturaCabecera = new FacturaCabecera(cal, 'N', 0, 0, 0, 0, null, persona, ped);
             pedidoFacade.create(ped);
@@ -75,7 +75,7 @@ public class PedidoResource {
 
 
     @POST
-    @Path("confirmpedido")
+    @Path("/confirmapedido/")
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response confirmPedido(@FormParam("cedula_Id") String cedulaid) throws Exception {

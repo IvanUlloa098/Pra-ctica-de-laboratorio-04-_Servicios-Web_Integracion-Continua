@@ -23,7 +23,7 @@ public class UsuarioResource {
 
         if (personaFacade.verificarUsuario(cedula, password)){
             System.out.println("USUARIO EXISTENTE");
-            return Response.ok("1").header("Access-Control-Allow-Origins", "*")
+            return Response.ok("Bienvenido!").header("Access-Control-Allow-Origins", "*")
                     .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                     .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
                     .build();
@@ -47,7 +47,7 @@ public class UsuarioResource {
             persona.setPassword(password);
             try{
                 personaFacade.edit(persona);
-                return Response.status(Response.Status.ACCEPTED).entity("1")
+                return Response.status(Response.Status.ACCEPTED).entity("Cliente asignado")
                         .header("Access-Control-Allow-Origins", "*")
                         .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                         .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
@@ -60,7 +60,7 @@ public class UsuarioResource {
                         .build();
             }
         }else{
-            return Response.status(Response.Status.BAD_REQUEST).entity("2")
+            return Response.status(Response.Status.BAD_REQUEST).entity("No se pudo cambiar el cliente")
                     .header("Access-Control-Allow-Origins", "*")
                     .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                     .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
@@ -106,7 +106,7 @@ public class UsuarioResource {
     public Response anular(@FormParam("cedula") String cedula){
         try{
             Persona persona = personaFacade.find(cedula);
-            persona.setAnulado('T');
+            persona.setAnulado('T');//True
             personaFacade.edit(persona);
             return Response.status(Response.Status.BAD_REQUEST).entity("Se ha anulado el usuario correctamente!")
                     .header("Access-Control-Allow-Origins", "*")
@@ -124,3 +124,4 @@ public class UsuarioResource {
 
 
 }
+

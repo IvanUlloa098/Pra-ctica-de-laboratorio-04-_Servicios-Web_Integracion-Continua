@@ -107,7 +107,7 @@ public class CollectionBean implements Serializable {
 				System.out.println(">> FACTURA ANULADA");
 				this.init();
 				
-				FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica_Laboratorio_03-EJB-JSF-JPA/private/listarFacturas.xhtml");
+				FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica-de-laboratorio-04-_Servicios-Web_Integracion-Continua/private/listarFacturas.xhtml");
 			} catch (Exception e) {
 				System.out.println(">> FACTURA NO ANULADA");
 				this.init();

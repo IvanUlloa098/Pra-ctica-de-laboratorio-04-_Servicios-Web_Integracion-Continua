@@ -23,8 +23,42 @@ public class PedidoFacade extends AbstractFacade<Pedido> {
     @Override
     protected EntityManager getEntityManager(){return entityManager;}
 
-   
+    public Pedido getUltimoPedido(Persona persona, GregorianCalendar date){
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Pedido> criteriaQuery = criteriaBuilder.createQuery(Pedido.class);
+        Root<Pedido> pedidoRoot = criteriaQuery.from(Pedido.class);
+        Predicate predicatePersona = criteriaBuilder.equal(pedidoRoot.get("persona"), persona);
+        Predicate predicateFecha = criteriaBuilder.equal(pedidoRoot.get("fecha_emision"), date);
+        Predicate[] predicates = new Predicate[]{predicatePersona, predicateFecha};
+
+        criteriaQuery.select(pedidoRoot).where(predicates);
+        List<Pedido> pedidoList = entityManager.createQuery(criteriaQuery).getResultList();
+
+        return pedidoList.get(pedidoList.size()-1);
+    }
     //SCORPION CODE
-   
+    public Pedido getCurrentPedido(Persona persona){
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Pedido> criteriaQuery = criteriaBuilder.createQuery(Pedido.class);
+        Root<Pedido> pedidoRoot = criteriaQuery.from(Pedido.class);
+        Predicate predicatePersona = criteriaBuilder.equal(pedidoRoot.get("persona"), persona);
+        Predicate[] predicates = new Predicate[]{predicatePersona};
+        criteriaQuery.select(pedidoRoot).where(predicates);
+        List<Pedido> pedidoList = entityManager.createQuery(criteriaQuery).getResultList();
+        return pedidoList.get(pedidoList.size()-1);
+
+    }
+
+    public List<Pedido> findByPedidosId(Persona persona) {
+        // TODO Auto-generated method stub
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Pedido> criteriaQuery = criteriaBuilder.createQuery(Pedido.class);
+        Root<Pedido> pedidoRoot = criteriaQuery.from(Pedido.class);
+        Predicate predicatePersona = criteriaBuilder.equal(pedidoRoot.get("persona"), persona);
+        criteriaQuery.select(pedidoRoot).where(predicatePersona);
+        return entityManager.createQuery(criteriaQuery).getResultList();
+
+    }
 
 }
