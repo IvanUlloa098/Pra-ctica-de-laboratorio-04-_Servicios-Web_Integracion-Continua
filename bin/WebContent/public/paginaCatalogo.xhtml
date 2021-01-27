@@ -5,6 +5,11 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+<<<<<<< HEAD
+=======
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+>>>>>>> 90e2d6b2af0efbe4a080641213912406615b0e2b
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
@@ -30,7 +35,11 @@
 
 <h:body style="margin-bottom: 5%; background-color: #a1b3ba; background-image: url('https://64.media.tumblr.com/3ee53ca82e524e8849913567a51d9079/tumblr_moel85NxLx1qmxiy0o1_500.gif');background-size:100%; background-repeat: no-repeat"  >
 
+<<<<<<< HEAD
     <!-- BARRA DE NAVEGACION -->
+=======
+   
+>>>>>>> 90e2d6b2af0efbe4a080641213912406615b0e2b
     <h:panelGroup>
         <div class="navbar navbar-expand-sm bg-dark navbar-dark">
             <a class="navbar-brand" style="margin-right: 20px">Bodegas</a>
@@ -46,6 +55,7 @@
                     <h:selectOneMenu styleClass="btn btn-secondary dropdown-toggle"
                                      style="margin-left: 10px; margin-right: 10px"
                                      value="#{catalogoBean.categoriaSeleccionada}">
+<<<<<<< HEAD
                         <f:selectItems value="#{catalogoBean.categorias}" pt:styleClass="dropdown-item"/>
                         <f:ajax listener="#{catalogoBean.cargarProductosPorCategoria}" render=":table_father"/>
                     </h:selectOneMenu>
@@ -62,11 +72,20 @@
                     </h:selectOneMenu>
                 </fieldset>
             </h:form>
+=======
+                        <f:selectItems value="#{catalogoBean.categoriasList}" var="categoria" itemValue="#{categoria.codigo}" itemLabel="#{categoria.nombre}" pt:styleClass="dropdown-item"/>
+                        <f:ajax render="tabla1"/>
+                    </h:selectOneMenu>
+                </fieldset>
+            </h:form>
+            
+>>>>>>> 90e2d6b2af0efbe4a080641213912406615b0e2b
             <h:form>
             <h:commandButton styleClass="btn btn-primary" value="Iniciar Sesion" action="#{catalogoBean.redirect}"  style="margin-left: auto; float: right"/>
             </h:form>
         </div>
 
+<<<<<<< HEAD
         <!-- APARTADO PARA LOS PRODUCTOS -->
         <br/>
         <h:panelGroup id="table_father">
@@ -137,3 +156,54 @@
 </h:body>
 </html>
 
+=======
+        
+        <br/>
+        
+         <h:dataTable id="tabla1" value="#{catalogoBean.filtrado2}" var="p"
+                         styleClass="table table-dark table-striped" style="width: 70%;
+             margin-left: auto; margin-right: auto;">
+
+                <h:column>
+		            <f:facet name="header">Nombre</f:facet>
+		            <h:outputText value="#{p.nombre}"  />
+		           
+		            
+		        </h:column>
+		          <h:column>
+		        
+		           <f:facet name="header">PrecioCompra</f:facet>
+		            <h:outputText value="#{p.precioCompra}"  />
+		            
+		        </h:column>
+		          <h:column>
+		        
+		           <f:facet name="header">PrecioVenta</f:facet>
+		            <h:outputText value="#{p.precioVenta}"  />
+		            
+		        </h:column>
+		        
+		        <h:column>
+		        
+		           <f:facet name="header">Categoria</f:facet>
+		            <h:outputText value="#{p.categoria.nombre}"  />
+		            
+		        </h:column>
+		        
+		        <h:column>
+		        
+		           <f:facet name="header">Stock Total</f:facet>
+		            <h:outputText value="#{p.stock}"  />
+		            
+		        </h:column>
+                
+            </h:dataTable>
+        
+        
+        
+        
+        
+    </h:panelGroup>
+</h:body>
+</html>
+>>>>>>> 90e2d6b2af0efbe4a080641213912406615b0e2b

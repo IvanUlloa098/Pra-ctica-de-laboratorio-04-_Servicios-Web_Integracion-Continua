@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
     <wb-module deploy-name="Practica-de-laboratorio-04-_Servicios-Web_Integracion-Continua-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+=======
+    <wb-module deploy-name="Practica-de-laboratorio-04-_Servicios-Web_Integracion-Continua">
+>>>>>>> 90e2d6b2af0efbe4a080641213912406615b0e2b
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/Practica-de-laboratorio-04-_Servicios-Web_Integracion-Continua/build/classes"/>

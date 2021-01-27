@@ -10,5 +10,8 @@
   <installed facet="jst.jsf" version="2.3"/>
   <installed facet="wst.jsdt.web" version="1.0"/>
   <installed facet="jpt.jpa" version="2.2"/>
+<<<<<<< HEAD
   <installed facet="jst.jaxrs" version="2.1"/>
+=======
+>>>>>>> 90e2d6b2af0efbe4a080641213912406615b0e2b
 </faceted-project>
