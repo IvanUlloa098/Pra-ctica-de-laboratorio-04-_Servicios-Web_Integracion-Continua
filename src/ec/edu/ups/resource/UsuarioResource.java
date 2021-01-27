@@ -106,7 +106,7 @@ public class UsuarioResource {
     public Response anular(@FormParam("cedula") String cedula){
         try{
             Persona persona = personaFacade.find(cedula);
-            persona.setAnulado('T');
+            persona.setAnulado('T');//True
             personaFacade.edit(persona);
             return Response.status(Response.Status.BAD_REQUEST).entity("Se ha anulado el usuario correctamente!")
                     .header("Access-Control-Allow-Origins", "*")
