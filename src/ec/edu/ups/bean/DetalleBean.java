@@ -438,7 +438,7 @@ public class DetalleBean implements Serializable {
 					
 				}					
 				
-				System.out.println(">> FACTURA CREATA EXITOSAMENTE");
+				System.out.println(">> FACTURA CREADA EXITOSAMENTE");
 				this.init();
 				this.mensaje = "se ha creado exitosamente la factura";				
 				
@@ -498,7 +498,15 @@ public class DetalleBean implements Serializable {
 
 	public void redirectPedido() {
 		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica_Laboratorio_03-EJB-JSF-JPA/private/paginaPedidos.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica-de-laboratorio-04-_Servicios-Web_Integracion-Continua/private/paginaPedidos.xhtml");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void redirectPedido1() {
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica-de-laboratorio-04-_Servicios-Web_Integracion-Continua/private/PaginaDePedidos.xhtml");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -509,7 +517,7 @@ public class DetalleBean implements Serializable {
 			
 			
 			
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica_Laboratorio_03-EJB-JSF-JPA/private/listarFacturas.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica-de-laboratorio-04-_Servicios-Web_Integracion-Continua/listarFacturas.xhtml");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
