@@ -31,49 +31,6 @@ public class PedidoResource {
     @EJB
     FacturaDetalleFacade facturaDetalleFacade;
 
-    //SCORPION CODE START
-    @POST
-    @Path("crearpedido")
-    @Produces(MediaType.TEXT_PLAIN)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response crearPedido(@FormParam("producto_Id") String productoid,@FormParam("cedula_Id") String cedulaid,@FormParam("cantidad") String cantidad) throws Exception {
-        System.out.println("producto "+ productoid);
-        System.out.println("cedula "+ cedulaid);
-        System.out.println("cantidad "+ cantidad);
-        GregorianCalendar cal = getCurrentDate();
-        Persona persona =personaFacade.searchPerson(cedulaid);
-        int cant= Integer.parseInt(cantidad);
-        try{
-            System.out.println("PEDIDO EN PROCESO");
-            Pedido pedido =pedidoFacade.getCurrentPedido(persona);
-            FacturaCabecera facturacab= facturaCabeceraFacade.getPedidoFacturaCabecera(pedido);
-            Producto producto = productoFacade.buscarProductoPorCodigo(productoid);
-            double total_producto=producto.getPrecioVenta()*cant;
-            FacturaDetalle facturaDetalle = new FacturaDetalle(cant,total_producto,facturacab,producto);
-            facturaDetalleFacade.create(facturaDetalle);
-        }catch (Exception e){
-            System.out.println("Primera Orden");
-            Pedido ped = new Pedido("EN_PROCESO",cal,persona,null);
-            FacturaCabecera facturaCabecera = new FacturaCabecera(cal, 'N', 0, 0, 0, 0, null, persona, ped);
-            pedidoFacade.create(ped);
-            ped.setFacturaCabecera(facturaCabecera);
-            facturaCabeceraFacade.create(facturaCabecera);
-            pedidoFacade.edit(ped);
-            FacturaCabecera facturacab= facturaCabeceraFacade.getPedidoFacturaCabecera(ped);
-            Producto producto = productoFacade.buscarProductoPorCodigo(productoid);
-            double total_producto=producto.getPrecioVenta()*cant;
-            FacturaDetalle facturaDetalle = new FacturaDetalle(cant,total_producto,facturacab,producto);
-            facturaDetalleFacade.create(facturaDetalle);
-        }
-
-        return Response.ok("OK!" + productoid + " <--> " + cedulaid)
-                .header("Access-Control-Allow-Origins", "*")
-                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
-                .build();
-    }
-
-
     @POST
     @Path("confirmapedido")
     @Produces(MediaType.TEXT_PLAIN)
@@ -173,7 +130,7 @@ public class PedidoResource {
 
         Jsonb jsonb = JsonbBuilder.create();
         Persona persona = personaFacade.find(personaId);
-        List<Pedido> pedidoList = (List<Pedido>) pedidoFacade.find(persona);
+        List<Pedido> pedidoList = pedidoFacade.findByPedidosId(persona);
 
         try {
             List<Pedido> pedidos = Pedido.serializePedidos(pedidoList);
@@ -188,3 +145,5 @@ public class PedidoResource {
     }
 
 }
+
+
