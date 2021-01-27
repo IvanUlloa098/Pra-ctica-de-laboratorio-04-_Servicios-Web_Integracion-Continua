@@ -33,7 +33,7 @@ public class PedidoResource {
 
     //SCORPION CODE START
     @POST
-    @Path("crearpedido")
+    @Path("/crearpedido/")
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response crearPedido(@FormParam("producto_Id") String productoid,@FormParam("cedula_Id") String cedulaid,@FormParam("cantidad") String cantidad) throws Exception {
@@ -75,7 +75,7 @@ public class PedidoResource {
 
 
     @POST
-    @Path("confirmapedido")
+    @Path("/confirmapedido/")
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response confirmPedido(@FormParam("cedula_Id") String cedulaid) throws Exception {
