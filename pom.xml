@@ -6,7 +6,23 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
   <artifactId>Practica-de-laboratorio-04-_Servicios-Web_Integracion-Continua</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
   <build>
+  
+  	<plugins>
+		<plugin>            
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-war-plugin</artifactId>
+		  <configuration>
+		    <webXml>WebContent\WEB-INF\web.xml</webXml>        
+		  </configuration>
+		</plugin>
+  		
+  	</plugins>
+  
+  </build>
+  
+  <!--  <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
       <resource>
@@ -33,7 +49,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
         </configuration>
       </plugin>
     </plugins>
-  </build>
+  </build>-->
    <dependencies>
         <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
 	<dependency>
