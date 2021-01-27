@@ -251,7 +251,7 @@ public class CatalogoBean implements Serializable{
     public void redirect(){
         System.out.println("redirige");
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica_Laboratorio_03-EJB-JSF-JPA/public/logIn.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica-de-laboratorio-04-_Servicios-Web_Integracion-Continua/public/logIn.xhtml");
         } catch (Exception e) {
             e.printStackTrace();
         }

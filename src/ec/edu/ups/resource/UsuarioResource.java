@@ -23,7 +23,7 @@ public class UsuarioResource {
 
         if (personaFacade.verificarUsuario(cedula, password)){
             System.out.println("USUARIO EXISTENTE");
-            return Response.ok("1").header("Access-Control-Allow-Origins", "*")
+            return Response.ok("Bienvenido!").header("Access-Control-Allow-Origins", "*")
                     .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                     .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
                     .build();
