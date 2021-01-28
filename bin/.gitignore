@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 /build/
 .classpath
 .classpath
 .classpath
 /target/
-=======
+.settings/org.eclipse.jdt.core.prefs
 /bin/
->>>>>>> 90e2d6b2af0efbe4a080641213912406615b0e2b
