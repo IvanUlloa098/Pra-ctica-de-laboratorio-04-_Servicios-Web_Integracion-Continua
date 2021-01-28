@@ -10,6 +10,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
   <build>
   	<finalName>${project.artifactId}</finalName>
   	
+  	
   	<plugins>
 		<plugin>            
 		  <groupId>org.apache.maven.plugins</groupId>
