@@ -1,5 +1,6 @@
 package ec.edu.ups.resource;
 
+import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.entidad.Producto;
 
@@ -16,15 +17,18 @@ public class ProductoResource {
 
     @EJB
     ProductoFacade productoFacade;
+    
+    @EJB
+    BodegaFacade bodegaFacade;
 
     @POST
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response getProductos(@FormParam("bodegaId") Integer bodegaId, @FormParam("categoriaId") Integer categoriaId){
+    public Response getProductos(@FormParam("bodegaId") Integer bodegaId){
         Jsonb jsonb = JsonbBuilder.create();
 
-        List<Producto> productoList = productoFacade.getProductos(bodegaId, categoriaId);
+        List<Producto> productoList = productoFacade.getProductosByBodega(bodegaFacade.find(bodegaId));
         System.out.println(productoList);
         if(!productoList.isEmpty())
             return Response.ok(jsonb.toJson(productoList))
