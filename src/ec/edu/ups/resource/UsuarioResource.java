@@ -12,6 +12,7 @@ import java.io.IOException;
 @Path("/usuario/")
 public class UsuarioResource {
 
+	//TEST 1
     @EJB
     PersonaFacade personaFacade;
 
@@ -20,13 +21,26 @@ public class UsuarioResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public Response getUsuario(@FormParam("cedula") String cedula, @FormParam("password") String password) throws IOException {
-
+    	Persona persona;
         if (personaFacade.verificarUsuario(cedula, password)){
             System.out.println("USUARIO EXISTENTE");
-            return Response.ok("Bienvenido!").header("Access-Control-Allow-Origins", "*")
-                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
-                    .build();
+            persona = personaFacade.find(cedula);
+            
+            if (persona.getAnulado() == 'F') {
+            	
+            	return Response.ok("Bienvenido!").header("Access-Control-Allow-Origins", "*")
+                        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+                        .build();
+			} else {
+				return Response.status(Response.Status.BAD_REQUEST)
+	                    .header("Access-Control-Allow-Origins", "*")
+	                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+	                    .build();
+			}
+            
+            
         }else{
             return Response.status(Response.Status.BAD_REQUEST)
                     .header("Access-Control-Allow-Origins", "*")
