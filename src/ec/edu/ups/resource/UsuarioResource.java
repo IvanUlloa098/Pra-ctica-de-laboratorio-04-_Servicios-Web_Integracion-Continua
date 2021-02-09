@@ -12,29 +12,11 @@ import java.io.IOException;
 @Path("/usuario/")
 public class UsuarioResource {
 
+	//TEST 1
     @EJB
     PersonaFacade personaFacade;
 
-    @POST
-    @Path("/login/")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response getUsuario(@FormParam("cedula") String cedula, @FormParam("password") String password) throws IOException {
-
-        if (personaFacade.verificarUsuario(cedula, password)){
-            System.out.println("USUARIO EXISTENTE");
-            return Response.ok("Bienvenido!").header("Access-Control-Allow-Origins", "*")
-                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
-                    .build();
-        }else{
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .header("Access-Control-Allow-Origins", "*")
-                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
-                    .build();
-        }
-    }
+    
 
     @POST
     @Path("/register/")
@@ -66,6 +48,30 @@ public class UsuarioResource {
                     .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
                     .build();
         }
+    }
+    
+    @POST
+    @Path("/registercliente/")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response registerZero(@FormParam("cedula") String cedula, @FormParam("nombre") String nombre, @FormParam("apellido") String apellido, @FormParam("correo") String correo, @FormParam("password") String password, @FormParam("telefono") String telefono, @FormParam("direccion") String direccion){
+        Persona persona = new Persona(cedula, nombre, apellido, direccion, telefono, correo, password, 'F');
+        
+        try{
+        	personaFacade.create(persona);
+            return Response.status(Response.Status.ACCEPTED).entity("Cliente asignado")
+                    .header("Access-Control-Allow-Origins", "*")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+                    .build();
+        }catch (Exception e){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error al crear usuario!" + e.getCause())
+                    .header("Access-Control-Allow-Origins", "*")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+                    .build();
+        }
+        
     }
 
     @PUT

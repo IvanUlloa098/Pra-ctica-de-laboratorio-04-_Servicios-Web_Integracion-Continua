@@ -24,7 +24,7 @@
         <a class="navbar-brand">Pedidos</a>
         <h:form>
             <h:commandLink action="#{pedidoBean.redirectFacturas}" styleClass="btn btn-success" value="Regresar!"/>
-            <p:commandLink action="#{pedidoBean.cerrarSesion}" styleClass="btn btn-danger" style="margin-left: auto" value="Cerrar Sesion"/>
+            <h:commandLink action="#{pedidoBean.cerrarSesion}" styleClass="btn btn-danger" style="margin-left: auto" value="Cerrar Sesion"/>
         </h:form>
     </div>
     <h3>Pedidos</h3>
@@ -41,7 +41,7 @@
             <h:column>
                 <f:facet name="header">Fecha Emision</f:facet>
 
-                <h:outputText value="#{pedidoBean.formatDate(p.pedido.fecha_emision)}"  />
+                <h:outputText value="#{pedidoBean.formatDate(p.pedido.fecha_emision)}"/>
             </h:column>
 
             <h:column>

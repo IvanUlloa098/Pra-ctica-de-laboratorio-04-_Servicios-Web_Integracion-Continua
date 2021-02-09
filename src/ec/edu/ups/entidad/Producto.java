@@ -30,13 +30,16 @@ public class Producto implements Serializable {
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinColumn
     private List<Bodega> bodegasList;
-
+   
     @ManyToOne
     private Categoria categoria;
-
+    
+    
+    @JsonbTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<FacturaDetalle> facturasDetallesList;
 
+    @JsonbTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<Stock> lista_stock;
 

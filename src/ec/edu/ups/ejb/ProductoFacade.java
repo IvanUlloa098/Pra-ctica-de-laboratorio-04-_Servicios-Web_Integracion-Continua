@@ -83,29 +83,21 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         return codigoProductos;
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private List<Producto> productos;
-    public List<Producto> getProductos(int codigoBodega, int codigoCategoria){
-        productos = new ArrayList<>();
-        List<Integer> codigosProducto = getProductosPorBodega(codigoBodega);
-        if(!codigosProducto.isEmpty()) {
-            codigosProducto.forEach(e -> productos.add(super.find(e)));
-            productos = productos
-                    .parallelStream()
-                    .filter(producto -> producto.getCategoria().getCodigo() == codigoCategoria)
-                    .collect(Collectors.toList());
-            List<Producto> productoList = new ArrayList<>();
-
-            productos.forEach(p -> {
-                Producto producto = new Producto(p.getCodigo(), p.getNombre(), p.getImagen(), p.getPrecioCompra(),
-                        p.getPrecioVenta(), p.getIva(), p.getStock(), null, null, null);
-                productoList.add(producto);
-            });
-
-
-            return productoList;
-        }
-        return productos;
-    }
+    
+    
+ 
 
     private List<Categoria> categoriasList;
 
@@ -124,5 +116,14 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         }else
             return new ArrayList<>();
     }
+    
+   public List<Producto> getProductosByBodega(Bodega bodega){
+	   List<Producto> productos = bodega.getProductosList();
+	   productos.isEmpty();
+	   
+	return productos;
+	   
+   }
+    
     }
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -19,7 +20,7 @@ public class Categoria implements Serializable {
     private int codigo;
     private String nombre;
     private String imagen;
-
+    @JsonbTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
     private List<Producto> productosList;
 
